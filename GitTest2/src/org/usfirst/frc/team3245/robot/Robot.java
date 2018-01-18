@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
-		double tester = 1.0;
+		double tester = 2.0;
 	}
 
 	/**
