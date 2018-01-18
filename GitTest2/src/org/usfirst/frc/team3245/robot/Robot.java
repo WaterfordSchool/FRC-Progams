@@ -26,7 +26,8 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
-		double tester = 2.0;
+		double tester = 3.0;
+		https://github.com/WaterfordSchool/FRC-Progams.git
 	}
 
 	/**
