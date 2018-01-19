@@ -1,0 +1,71 @@
+autointit
+
+String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
+		if(fieldPosition =='L'){
+			if(gameData.char(0) == 'L')
+			{
+			driveforward 168in
+			turn 90% right
+			driveforward 2sec
+			scoreSwitch()
+			}
+			else if(gameData.charAt(1) == 'L'){
+			driveforward 324in
+			turn 90% right
+			raiseScaleElevator()
+			//find measurement for scale drive
+			scoreScale()
+		
+			}
+		
+			else{
+			driveforward between scale and switch 
+			turn 90% right
+			driveforward 
+			turn 90% left
+			driveforward middle of scale
+			turn 90% left
+			raiseScaleElevator()
+			driveforward to Scale
+			scoreScale()
+			}
+		}
+		
+		if(fieldPosition =='R'){
+			
+			if(gameData.char(0) == 'R') {
+			driveforward 168in
+			turn 90% left
+			driveforward 2sec
+			scoreSwitch()
+			}
+			else if(gamaData.charAt(1) == 'R'){
+			driveforward 324in
+			turn 90% left
+			raiseScaleElevator()
+			//find measurement for scale drive
+			scoreScale()
+			}
+			else{
+			driveforward between scale and switch 
+			turn 90% left
+			driveforward 
+			turn 90% right
+			driveforward middle of scale
+			turn 90% right
+			raiseScaleElevator()
+			driveforward to Scale
+			scoreScale()
+			}
+		
+		
+		}
+		if(gameData.charAt(0) == 'L')
+		{
+			//Put left auto code here
+			
+		} else {
+			//Put right auto code here
+		}
