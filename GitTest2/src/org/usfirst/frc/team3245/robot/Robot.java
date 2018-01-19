@@ -28,7 +28,25 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto choices", chooser);
 		double tester = 4.0;
 		https://github.com/WaterfordSchool/FRC-Progams.git
+		
+			//Code for gameData but only for Switch Auto
 			
+	String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+			
+			if(gameData.charAt(0) == 'L') {
+				//put drive left auto code here
+			}
+			else {
+				//put drive right auto code here
+			}
+			
+			/* We can test this autocode on our Driver Station Dashboard,
+			 * Hit the settings icon and on the bottom left there should be
+			 * a box labeled 'Game Data.'
+			 * Enter a 3 letter combination of L's or R's (capitalized) and
+			 * test it.
+			 */
 	}
 
 	/**
