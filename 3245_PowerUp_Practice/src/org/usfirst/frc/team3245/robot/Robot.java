@@ -14,8 +14,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
+	char fieldPosition;
+	double leftDrive;
+	double rightDrive;
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
+	double fastLeft = 1, fastRight = 1 , slowRight = 0.5, slowLeft = 0.5; 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -33,13 +37,15 @@ public class Robot extends IterativeRobot {
 			
 	String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-			
+		if(fieldPosition=='L') {	
 			if(gameData.charAt(0) == 'L') {
-				//put drive left auto code here
+				//put left auto code here
+				leftDrive.set(fastLeft/2);
 			}
 			else {
 				//put drive right auto code here
 			}
+		}
 			
 			/* We can test this autocode on our Driver Station Dashboard,
 			 * Hit the settings icon and on the bottom left there should be
