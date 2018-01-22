@@ -7,7 +7,7 @@ String gameData;
 			if(gameData.char(0) == 'L')
 			{
 			driveforward 168in
-			turn 90% right
+			turn 90deg right
 			driveforward 2sec
 			scoreSwitch()
 			}
