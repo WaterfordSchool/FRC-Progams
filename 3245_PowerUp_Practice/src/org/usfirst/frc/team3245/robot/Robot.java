@@ -1,8 +1,13 @@
 package org.usfirst.frc.team3245.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -15,11 +20,15 @@ public class Robot extends IterativeRobot {
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	char fieldPosition;
-	double leftDrive;
-	double rightDrive;
+	Talon leftDrive = new Talon (0);
+	Talon rightDrive = new Talon (1);
+	Timer timer = new Timer();
+	String gameData;
 	String autoSelected;
+	String DriverStation;
 	SendableChooser<String> chooser = new SendableChooser<>();
-	double fastLeft = 1, fastRight = 1 , slowRight = 0.5, slowLeft = 0.5; 
+	double fastLeft = 1.0, fastRight = 1.0 , slowRight = 0.5, slowLeft = 0.5;
+	//topSlowSpeed = ?; 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -35,18 +44,7 @@ public class Robot extends IterativeRobot {
 		
 			//Code for gameData but only for Switch Auto
 			
-	String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(fieldPosition=='L') {	
-			if(gameData.charAt(0) == 'L') {
-				//put left auto code here
-				leftDrive.set(fastLeft/2);
-			}
-			else {
-				//put drive right auto code here
-			}
-		}
-			
+	
 			/* We can test this autocode on our Driver Station Dashboard,
 			 * Hit the settings icon and on the bottom left there should be
 			 * a box labeled 'Game Data.'
@@ -79,9 +77,52 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		timer.reset();
+		timer.start();
 		switch (autoSelected) {
 		case customAuto:
 			// Put custom auto code here
+			String gameData;
+			//gets driver station info
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			//if we are on the left spot
+			if(fieldPosition=='L') {	
+				//if our switch is on the left 
+				if(gameData.charAt(0) == 'L') {
+					//put left auto code here
+					//driving forward
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/2);
+					Timer.delay(2);
+					//turning right
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/6);
+					Timer.delay(1);
+					//if timer is this time....drive straight for a given amount of time until reaches switch
+					if(timer.get() < 1.0) {
+						leftDrive.set(fastLeft/2);
+						rightDrive.set(fastRight/2);
+					}
+					//if our scale is on left
+					else if(gameData.charAt(1) == 'L') {
+						//driving forward
+						leftDrive.set(fastLeft/2);
+						rightDrive.set(fastRight/2);
+						//turn right for scale
+						leftDrive.set(fastLeft/2);
+						rightDrive.set(fastRight/6);
+						
+						
+					}
+					
+					
+					
+				}
+				else {
+					//put drive right auto code here
+				}
+			}
+				
 			break;
 		case defaultAuto:
 		default:
