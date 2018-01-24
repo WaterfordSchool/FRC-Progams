@@ -124,7 +124,7 @@ public class Robot extends IterativeRobot {
 					//Timer.delay(1);
 					
 					//turning right with Gyros
-					double turningValue = (kAngleSetPoint - m_gyro.getAngle(90)) * kP;
+					double turningValue = (kAngleSetPoint - m_gyro.getAngle(-90)) * kP;
 						//invert the direction of the turn if we're going backwards
 					turningValue = Math.copySign(turningValue, m_joystick.getY());
 					
