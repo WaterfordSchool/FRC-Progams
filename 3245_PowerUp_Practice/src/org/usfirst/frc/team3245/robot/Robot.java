@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team3245.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -27,8 +28,31 @@ public class Robot extends IterativeRobot {
 	String autoSelected;
 	String DriverStation;
 	SendableChooser<String> chooser = new SendableChooser<>();
+<<<<<<< Upstream, based on branch 'master' of https://github.com/WaterfordSchool/Team3245_PowerUp
 	double fastLeft = 1.0, fastRight = 1.0 , slowRight = 0.5, slowLeft = 0.5;
 	//topSlowSpeed = ?; 
+
+	double fastLeft = 1, fastRight = 1 , slowRight = 0.5, slowLeft = 0.5;
+	
+	// Code for Gyro below
+	
+	private static final double kAngleSetpoint = 0.0; // The set angle of the gyro
+	private static final double kP = 0.005; //proportional turning constant
+	
+	//We may need to adjust the calibration constant
+	//A gyro value of 360 is equivalent to one full revolution
+	private static final double kVoltsPerDegreePerSecond = 0.0128;
+	
+	//These are the ports for the gyro and and motors
+	private static final int kLeftMotorPort = 1;
+	private static final int kRightMotorPort = 3;
+	private static final int kGyroPort = 9; // May need changing depending on which port we choose
+	private static final int kJoystickPort = 1; //This is set to be in the operator's controller
+	
+	//This is where the gyro is being declared
+	private AnalogGryro m_gyro = new AnalogGyro(kGyroPort);
+	private Joystick m_joystick = new Joystick(kJoystickPort);
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -89,15 +113,21 @@ public class Robot extends IterativeRobot {
 			if(fieldPosition=='L') {	
 				//if our switch is on the left 
 				if(gameData.charAt(0) == 'L') {
-					//put left auto code here
 					//driving forward
 					leftDrive.set(fastLeft/2);
 					rightDrive.set(fastRight/2);
 					Timer.delay(2);
-					//turning right
-					leftDrive.set(fastLeft/2);
-					rightDrive.set(fastRight/6);
-					Timer.delay(1);
+					
+					//turning right with normal code
+					//leftDrive.set(fastLeft/2);
+					//rightDrive.set(fastRight/6);
+					//Timer.delay(1);
+					
+					//turning right with Gyros
+					double turningValue = (kAngleSetPoint - m_gyro.getAngle(90)) * kP;
+						//invert the direction of the turn if we're going backwards
+					turningValue = Math.copySign(turningValue, m_joystick.getY());
+					
 					//if timer is this time....drive straight for a given amount of time until reaches switch
 					if(timer.get() < 1.0) {
 						leftDrive.set(fastLeft/2);
@@ -145,4 +175,3 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 	}
 }
-
