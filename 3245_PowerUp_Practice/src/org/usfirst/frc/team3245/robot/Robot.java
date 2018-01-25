@@ -117,9 +117,11 @@ public class Robot extends IterativeRobot {
 						leftDrive.set(fastLeft/2);
 						rightDrive.set(fastRight/2);
 						}
+						if(timer.get() < 0.5) {
 						//turn right for scale
 						leftDrive.set(fastLeft/2);
 						rightDrive.set(fastRight/6);
+						}
 						//raise elevator at some point
 						//score on scale
 						}
