@@ -25,7 +25,7 @@ public class Robot extends IterativeRobot {
 	Timer timer = new Timer();
 	String gameData;
 	String autoSelected;
-	String DriverStation;
+	//String DriverStation;
 	SendableChooser<String> chooser = new SendableChooser<>();
 	double fastLeft = 1.0, fastRight = 1.0 , slowRight = 0.5, slowLeft = 0.5;
 	//topSlowSpeed = ?; 
@@ -66,6 +66,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		
 		autoSelected = chooser.getSelected();
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
@@ -91,38 +92,111 @@ public class Robot extends IterativeRobot {
 				if(gameData.charAt(0) == 'L') {
 					//put left auto code here
 					//driving forward
+					if(timer.get() < 2.0) {
 					leftDrive.set(fastLeft/2);
 					rightDrive.set(fastRight/2);
+					}
 					Timer.delay(2);
 					//turning right
+					if(timer.get() < 0.5) {
 					leftDrive.set(fastLeft/2);
 					rightDrive.set(fastRight/6);
-					Timer.delay(1);
+					}
+					Timer.delay(2);
 					//if timer is this time....drive straight for a given amount of time until reaches switch
 					if(timer.get() < 1.0) {
 						leftDrive.set(fastLeft/2);
 						rightDrive.set(fastRight/2);
 					}
+					//score on scale
+				}
 					//if our scale is on left
 					else if(gameData.charAt(1) == 'L') {
 						//driving forward
+						if(timer.get() < 1.0) {
 						leftDrive.set(fastLeft/2);
 						rightDrive.set(fastRight/2);
+						}
 						//turn right for scale
 						leftDrive.set(fastLeft/2);
 						rightDrive.set(fastRight/6);
-						
-						
+						//raise elevator at some point
+						//score on scale
+						}
+					
+					
+					
+				
+				//switch on right
+				else {
+					//driving forward
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/2);
+					//turning right halfway between scale and switch
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/6);
+					//drive forward to right side of scale
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/2);
+					//turn left to scale
+					leftDrive.set(fastLeft/6);
+					rightDrive.set(fastRight/2);
+					//drive to middle of scale
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/2);
+					//turn left to scale
+					leftDrive.set(fastLeft/6);
+					rightDrive.set(fastRight/2);
+					//timed drive forward 
+					//need to find proper time
+					if(timer.get()< 0.5) {
+						leftDrive.set(fastLeft/2);
+						rightDrive.set(fastRight/2);
 					}
 					
-					
-					
-				}
-				else {
-					//put drive right auto code here
 				}
 			}
+			//if we are on right of the field 
+			if(fieldPosition == 'R') {
+				//if our switch is on  the right
+				if(gameData.charAt(0)== 'R') {
+					//drive forward
+					leftDrive.set(fastLeft/2);
+					rightDrive.set(fastRight/2);
+					//turning left to switch
+					leftDrive.set(fastLeft/6);
+					rightDrive.set(fastRight/2);
+					if(timer.get() < 1) {
+						leftDrive.set(fastLeft/2);
+						rightDrive.set(fastRight/2);
+					}
+					//score on switch
+					else if(gameData.charAt(1) == 'R') {
+						//drive forward
+						leftDrive.set(fastLeft/2);
+						rightDrive.set(fastRight/2);
+						//turning left to scale
+						leftDrive.set(fastLeft/6);
+						rightDrive.set(fastRight/2);
+						//driving to scale
+						//need to figure out exact time
+						if(timer.get() < 0.5){
+							leftDrive.set(fastLeft/2);
+							rightDrive.set(fastRight/2);
+						}
+						//if our scale on left side
+						else {
+							//drive forward halfway between scale and switch
+							leftDrive.set(fastLeft/2);
+							rightDrive.set(fastRight/2);
+						}
+						
+					}
 				
+					
+					
+				}
+			}
 			break;
 		case defaultAuto:
 		default:
