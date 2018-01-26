@@ -40,9 +40,9 @@ public class Robot extends IterativeRobot {
 	//These are the ports for the gyro and and motors
 	private static final int kLeftMotorPort = 1;
 	private static final int kRightMotorPort = 3;
-	private static final int kGyroPort = 9; // May need changing depending on which port we choose
+	private static final int kGyroPort = 3; // May need changing depending on which port we choose
 	private static final int kJoystickPort = 1; //This is set to be in the operator's controller
-	
+	//need a new pmw cable for gyro 
 	//This is where the gyro is being declared
 	private AnalogGryro m_gyro = new AnalogGyro(kGyroPort);
 	private Joystick m_joystick = new Joystick(kJoystickPort);
