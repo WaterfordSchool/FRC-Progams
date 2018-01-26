@@ -2,12 +2,12 @@
 package org.usfirst.frc.team3245.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 
 /**
@@ -30,6 +30,8 @@ public class Robot extends IterativeRobot {
 	SendableChooser<String> chooser = new SendableChooser<>();
 	double fastLeft = 1.0, fastRight = 1.0 , slowRight = 0.5, slowLeft = 0.5;
 	//topSlowSpeed = ?; 
+	
+	//GRYO CODE
 	private static final double kAngleSetpoint = 0.0; // The set angle of the gyro
 	private static final double kP = 0.005; //proportional turning constant
 	
@@ -38,14 +40,15 @@ public class Robot extends IterativeRobot {
 	private static final double kVoltsPerDegreePerSecond = 0.0128;
 	
 	//These are the ports for the gyro and and motors
-	private static final int kLeftMotorPort = 1;
-	private static final int kRightMotorPort = 3;
-	private static final int kGyroPort = 3; // May need changing depending on which port we choose
+	private static final int kLeftMotorPort = 0; //Port 0,1,2 is saved for left drive motor
+	private static final int kRightMotorPort = 3; //Port 3,5,5 is saved for right drive motor
+	private static final int kGyroPort = 0; // May need changing depending on which port we choose
 	private static final int kJoystickPort = 1; //This is set to be in the operator's controller
-	//need a new pmw cable for gyro 
+	//gyros don't go in the PWM ports, they go into the DIO ports
 	//This is where the gyro is being declared
-	private AnalogGryro m_gyro = new AnalogGyro(kGyroPort);
-	private Joystick m_joystick = new Joystick(kJoystickPort);
+	private RobotDrive myRobot = new RobotDrive(kLeftMotorPort, kRightMotorPort);
+	private AnalogGryro gyro = new AnalogGyro(kGyroPort);
+	private Joystick joystick = new Joystick(kJoystickPort);
 	
 
 
@@ -59,6 +62,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
 		double tester = 4.0;
+		gyro.setSensitivity(kVoltsPerDegreePerSecond);
 		https://github.com/WaterfordSchool/FRC-Progams.git
 		
 			//Code for gameData but only for Switch Auto
@@ -120,11 +124,16 @@ public class Robot extends IterativeRobot {
 					//if(timer.get() < 0.5) {
 					//leftDrive.set(fastLeft/2);
 					//rightDrive.set(fastRight/6);
-					double turningValue = (kAngleSetPoint - m_gyro.getAngle(-90)) * kP;
+					
+					
+					double turningValue = (kAngleSetPoint - gyro.getAngle(-90)) * kP; //Don't know if this is correct
 						//invert the direction of the turn if we're going backwards
-					turningValue = Math.copySign(turningValue, m_joystick.getY());
+					turningValue = Math.copySign(turningValue, joystick.getY());
+					myRobot.drive(joystick.getY(), turningValue);
 					}
-					Timer.delay(2);
+				
+				
+					
 					//if timer is this time....drive straight for a given amount of time until reaches switch
 					if(timer.get() < 1.0) {
 						leftDrive.set(fastLeft/2);
@@ -143,6 +152,12 @@ public class Robot extends IterativeRobot {
 						//turn right for scale
 						leftDrive.set(fastLeft/2);
 						rightDrive.set(fastRight/6);
+						
+						
+						double turningValue = (kAngleSetpoint - gyro.getAngle(90)) * kP;
+							//Invert the direction if we are going backwards
+						turningValue = Math.copySign(turningValue, joystick.getY());
+						myRobot.drive(joystick.getY(), turningValue);
 						}
 						//raise elevator at some point
 						//score on scale
