@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Autonomous extends CommandGroup {
 	public Autonomous() {
+	
 		addSequential(new PrepareToPickup());
 		addSequential(new Pickup());
 		addSequential(new SetDistanceToBox(0.10));
@@ -17,6 +18,7 @@ public class Autonomous extends CommandGroup {
 		// addSequential(new DriveStraight(-2)); // Use Encoders if ultrasonic
 		// is broken
 		addParallel(new SetWristSetpoint(-45));
-		addSequential(new CloseClaw());
+		//don't think we need this
+		//addSequential(new CloseClaw());
 	}
 }

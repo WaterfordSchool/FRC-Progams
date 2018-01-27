@@ -20,6 +20,7 @@ import org.usfirst.frc.team3245.robot.commands.TankDriveWithJoystick;
  * the robots chassis. These include four drive motors, a left and right encoder
  * and a gyro.
  */
+//might have to program wheels on intake mechanism here
 public class DriveTrain extends Subsystem {
 	private SpeedController frontLeftMotor = new Talon(1);
 	private SpeedController rearLeftMotor = new Talon(2);
