@@ -24,7 +24,7 @@ public class OI {
 		SmartDashboard.putData("Elevator Top", new SetElevatorSetpoint(0.3));
 
 		SmartDashboard.putData("Wrist Horizontal", new SetWristSetpoint(0));
-		SmartDashboard.putData("Raise Wrist", new SetWristSetpoint(-45));
+		SmartDashboard.putData("Raise Wrist", new SetWristSetpoint(-45)); //we won't know the degrees until it is built--CHANGE?
 
 		//SmartDashboard.putData("Open Claw", new OpenClaw());
 		//SmartDashboard.putData("Close Claw", new CloseClaw());
