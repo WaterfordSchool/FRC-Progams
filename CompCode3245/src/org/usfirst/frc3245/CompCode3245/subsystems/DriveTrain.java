@@ -16,6 +16,8 @@ import org.usfirst.frc3245.CompCode3245.commands.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.ADXL345_I2C.Axes;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -47,7 +49,7 @@ public class DriveTrain extends Subsystem {
     private final WPI_TalonSRX rightRearMotor = RobotMap.driveTrainRightRearMotor;
     private final DifferentialDrive tDrive = RobotMap.driveTrainTDrive;
     private final Encoder leftEncoder = RobotMap.driveTrainLeftEncoder;
-    private final AnalogGyro gyro1 = RobotMap.driveTrainGyro1;
+    private final ADXRS450_Gyro gyro1 = RobotMap.driveTrainGyro1;
     private final Encoder rightEncoder = RobotMap.driveTrainRightEncoder;
     
     double LEncoderPos = 0, REncoderPos = 0, desiredDistance = 5;
@@ -107,5 +109,6 @@ public class DriveTrain extends Subsystem {
     public void drive(Joystick joy) {
     	drive(-joy.getY(), -joy.getAxis(AxisType.kThrottle));
     }
+    
     
     }
