@@ -22,13 +22,6 @@ import edu.wpi.first.wpilibj.Timer;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
-
-
-
-
-
-
 /**
  *
  */
@@ -70,18 +63,8 @@ public class DriveStr8 extends Command {
     @Override
 
     protected void initialize() {
-    	   
+    	
     }// closes initialize
-
- private boolean isAutonomous() {
-	 
-	 	RobotMap.driveTrainTDrive.tankDrive(0.3, 0.3);
-		Timer.delay(driveTime);
-		RobotMap.driveTrainTDrive.tankDrive(0, 0);
-	 
-		// TODO Auto-generated method stub
-		return false;
-	}
 
  // Called repeatedly when this Command is scheduled to run
     public void execute() {
@@ -94,8 +77,7 @@ public class DriveStr8 extends Command {
 		SmartDashboard.putNumber("turning value is ", turningValue);
 		//RobotMap.driveTrainTDrive.tankDrive(0.3+turningValue, 0.3-turningValue,false);
 		RobotMap.driveTrainTDrive.tankDrive(0.3, 0.3);
-		Timer.delay(driveTime);
-		RobotMap.driveTrainTDrive.tankDrive(0, 0);
+		
 		
     }
 

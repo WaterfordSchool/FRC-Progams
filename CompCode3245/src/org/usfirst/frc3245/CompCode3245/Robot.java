@@ -102,7 +102,11 @@ public class Robot extends TimedRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Gyro heading is :", RobotMap.driveTrainGyro1.getAngle() );//added by LW late on 2/1
-        new DriveStr8(5.0);
+        new DriveStr8(5.0); }
+    
+    
+        void isTimedOut() {
+        	new DriveStr8(5.0);
     }
 
     @Override
