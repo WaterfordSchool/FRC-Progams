@@ -91,6 +91,7 @@ public class Robot extends TimedRobot {
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        
     }
 
     /**
@@ -98,9 +99,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Gyro heading is :", RobotMap.driveTrainGyro1.getAngle() );//added by LW late on 2/1
-    }
+          }
 
     @Override
     public void teleopInit() {
