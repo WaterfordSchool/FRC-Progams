@@ -23,12 +23,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
-
-
-
-
-
 /**
  *
  */
@@ -80,8 +74,7 @@ public class DriveStr8 extends Command {
  // Called repeatedly when this Command is scheduled to run
     public void execute() {
 
-    	Robot.driveTrain.drive(Robot.oi.getDriver());
-    	
+    	RobotMap.driveTrainGyro1.reset();
 		double turningValue = (kAngleSetpoint - RobotMap.driveTrainGyro1.getAngle()) * kP;
 		// Invert the direction of the turn if we are going backwards
 		//turningValue = Math.copySign(turningValue, Robot.oi.getDriver().getY());
