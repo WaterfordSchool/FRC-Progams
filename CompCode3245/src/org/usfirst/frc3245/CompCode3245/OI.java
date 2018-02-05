@@ -71,7 +71,7 @@ public class OI {
        
         
         greenButton = new JoystickButton(driver, 2);
-        greenButton.whileHeld(new DriveStr8(0));       
+        greenButton.whileHeld(new DriveStr8());       
         
         
         
