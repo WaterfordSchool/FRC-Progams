@@ -22,7 +22,7 @@ import org.usfirst.frc3245.CompCode3245.Robot;
 public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand() {
     	addSequential(new DriveStr8(), 2);
-    	addSequential(new GyroTurn(90.0), 6);
+    	addSequential(new GyroTurn(90.0), 3);
     	addSequential(new DriveStr8(), 2);
 
     }
