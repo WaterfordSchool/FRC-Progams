@@ -33,8 +33,13 @@ public class Cart extends Subsystem {
     }
     
     public void open() {
-    	CartLeftArm.set(.5);
-    	CartRightArm.set(-.5);
+    	CartLeftArm.set(.3);
+    	CartRightArm.set(-.3);
+    }
+    
+    public void close() {
+    	CartLeftArm.set(-.3);
+    	CartRightArm.set(.3);
     }
     
     public void out() {
@@ -45,6 +50,8 @@ public class Cart extends Subsystem {
     public void stop() {
     	LeftCartWheel.set(0);
     	RightCartWheel.set(0);
+    	CartLeftArm.set(0);
+    	CartRightArm.set(0);
     }
 }
 

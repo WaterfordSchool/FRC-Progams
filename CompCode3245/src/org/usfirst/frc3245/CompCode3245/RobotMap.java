@@ -63,10 +63,10 @@ public class RobotMap {
         SpeedControllerGroup m_right = new SpeedControllerGroup(driveTrainRightFrontMotor, driveTrainRightRearMotor);
         
         ElevatorMotor = new WPI_TalonSRX(11);
-        LeftCartWheel = new WPI_TalonSRX(1); //UPDAT AND RENAME
-        RightCartWheel = new WPI_TalonSRX(5); //UPDATE AND RENAME
-        LeftCartArm = new WPI_TalonSRX(0); //UPDATE AND NAME
-        RightCartArm = new WPI_TalonSRX(0); //UPDATE AND NAME
+        LeftCartWheel = new WPI_TalonSRX(7);
+        RightCartWheel = new WPI_TalonSRX(12);
+        LeftCartArm = new WPI_TalonSRX(1);
+        RightCartArm = new WPI_TalonSRX(13);
         
 
         
