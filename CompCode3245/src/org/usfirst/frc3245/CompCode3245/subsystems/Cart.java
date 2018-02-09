@@ -27,31 +27,21 @@ public class Cart extends Subsystem {
     
     
     
-    public void in() {
-    	LeftCartWheel.set(-.5);
-    	RightCartWheel.set(.5);
+    public void rotateArm(double armSpeed) {
+    		LeftCartWheel.set(speed);
+    		RightCartWheel.set(speed);
     }
     
-    public void open() {
-    	CartLeftArm.set(.3);
-    	CartRightArm.set(-.3);
-    }
-    
-    public void close() {
-    	CartLeftArm.set(-.3);
-    	CartRightArm.set(.3);
-    }
-    
-    public void out() {
-    	LeftCartWheel.set(.5);
-    	RightCartWheel.set(-.5);
+    public void spinWheels(double wheelSpeed) {
+    		CartLeftArm.set(wheelSpeed);
+    		CartRightArm.set(wheelSpeed);
     }
     
     public void stop() {
-    	LeftCartWheel.set(0);
-    	RightCartWheel.set(0);
-    	CartLeftArm.set(0);
-    	CartRightArm.set(0);
+    		LeftCartWheel.set(0);
+    		RightCartWheel.set(0);
+    		CartLeftArm.set(0);
+    		CartRightArm.set(0);
     }
 }
 

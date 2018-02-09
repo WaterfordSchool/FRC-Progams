@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CartWheels extends Command {
 
-    public CartWheels() {
+    public CartWheels(double wheelSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
-    	requires(Robot.cartWheels);
+		requires(Robot.cart);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-    	setTimeout(0.9);
-    	Robot.cartWheels.in();
+    protected void initialize(double wheelSpeed) {
+		setTimeout(0.9);
+		Robot.cart.rotateArm(wheelSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,17 +28,17 @@ public class CartWheels extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+    		return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.cartWheels.stop();
+		Robot.cart.stop();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	end();
-    }
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+protected void interrupted() {
+		end();
+}
 }
