@@ -104,10 +104,10 @@ public class DriveTrain extends Subsystem {
     }
     
     public void drive(double left, double right) {
-    	tDrive.tankDrive(left, right);
+    	tDrive.tankDrive(right, left);
     }
     public void drive(Joystick joy) {
-    	drive(-joy.getY(), -joy.getAxis(AxisType.kThrottle));
+    	drive(joy.getY(), joy.getAxis(AxisType.kThrottle));
     }
     
     
