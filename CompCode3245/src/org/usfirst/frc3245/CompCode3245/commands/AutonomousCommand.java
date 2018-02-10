@@ -10,17 +10,15 @@
 
 
 package org.usfirst.frc3245.CompCode3245.commands;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc3245.CompCode3245.Robot;
 
 /**
  *
  */
 public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(double primaryTurn) {
-    	//addSequential(new DriveStr8(), 2);
+    	addSequential(new DriveStr8(), 2);
     	addSequential(new GyroTurn(primaryTurn), 1);
-    	//addSequential(new DriveStr8(), 2);
+    	addSequential(new DriveStr8(), 2);
     }
 }

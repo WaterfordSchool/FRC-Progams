@@ -84,14 +84,14 @@ public class OI {
         opLeftBumper.whileHeld(new ElevatorDown());
         
         drLeftTrigger = new JoystickButton(driver, 5);
-        drLeftTrigger.whileHeld(new CartWheels(-0.3));
+        drLeftTrigger.whileHeld(new CartWheelsSpinIn());
         drRightTrigger = new JoystickButton (driver, 6);
-        drRightTrigger.whileHeld(new CartWheels(0.3));
+        drRightTrigger.whileHeld(new CartWheelsSpinOut());
         
         opRedButton = new JoystickButton(operator, 3);
-        opRedButton.whileHeld(new CartArms(-0.3));
+        opRedButton.whileHeld(new CartArmsRotateOut());
         opBlueButton = new JoystickButton(operator, 1);
-        opBlueButton.whileHeld(new CartArms(.3));
+        opBlueButton.whileHeld(new CartArmsRotateIn());
         
         
         
