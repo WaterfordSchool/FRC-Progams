@@ -2,6 +2,7 @@
 package org.usfirst.frc3245.CompCode3245.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3245.CompCode3245.Robot;
+import org.usfirst.frc3245.CompCode3245.RobotMap;
 
 /**
  *
@@ -18,12 +19,13 @@ public class ElevatorUp extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	setTimeout(0.09);
-    	Robot.elevator.up();    	
+    	//setTimeout(0.09);
+    	//Robot.elevator.up();    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.activate(Robot.oi.getOperator());
     }
 
     // Make this return true when this Command no longer needs to run execute()

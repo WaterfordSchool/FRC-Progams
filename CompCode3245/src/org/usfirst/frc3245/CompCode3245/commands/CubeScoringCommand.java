@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CubeScoringCommand extends CommandGroup {
     public CubeScoringCommand() {
-    	addSequential(new CartArmsRotateOut(), 0.5);
-    	addSequential(new CartWheelsSpinOut(), 1);
-    	addParallel(new CartArmsRotateIn(), 1);
+    	addSequential(new CartArmsRotateOut(), 0.15);
+    	addParallel(new CartWheelsSpinOut(), 0.3);
+    	addParallel(new CartArmsRotateIn(), 0.3);
     }
 }

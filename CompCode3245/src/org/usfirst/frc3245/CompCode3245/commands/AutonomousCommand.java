@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(double primaryTurn) {
-    	addSequential(new DriveStr8(), 2);
+    	//addSequential(new DriveStr8(), 2);
     	addSequential(new GyroTurn(primaryTurn), 1);
-    	addSequential(new DriveStr8(), 2);
+    	//addSequential(new DriveStr8(), 2);
     }
 }

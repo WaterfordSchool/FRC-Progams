@@ -14,7 +14,7 @@ public class CartArmsRotateIn extends Command {
     public CartArmsRotateIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(Robot.cart);
+    		requires(Robot.cartArms);
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +26,7 @@ public class CartArmsRotateIn extends Command {
     protected void execute() {
 		setTimeout(0.9);
 		//Robot.cart.rotateArm(armSpeed);
-		Robot.cart.rotateArm(0.3);
+		Robot.cartArms.rotateArm(-0.2);
 		SmartDashboard.putNumber("Left Cart Wheel Speed", RobotMap.LeftCartWheel.get());
     }
 
@@ -37,7 +37,7 @@ public class CartArmsRotateIn extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    		Robot.cart.stop();
+    		Robot.cartArms.stop();
     }
 
     // Called when another command which requires one or more of the same
