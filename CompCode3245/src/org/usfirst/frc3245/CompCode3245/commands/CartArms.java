@@ -1,6 +1,9 @@
 package org.usfirst.frc3245.CompCode3245.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc3245.CompCode3245.Robot;
+import org.usfirst.frc3245.CompCode3245.RobotMap;
 
 
 /**
@@ -17,7 +20,10 @@ public class CartArms extends Command {
     // Called just before this Command runs the first time
     protected void initialize(double armSpeed) {
     		setTimeout(0.9);
-    		Robot.cart.rotateArm(armSpeed);
+    		//Robot.cart.rotateArm(armSpeed);
+    		RobotMap.LeftCartWheel.set(armSpeed);
+    		RobotMap.RightCartWheel.set(-armSpeed);
+        	SmartDashboard.putNumber("Left Cart Wheel Speed", RobotMap.LeftCartWheel.get());
     }
 
     // Called repeatedly when this Command is scheduled to run

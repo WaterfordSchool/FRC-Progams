@@ -52,7 +52,7 @@ public class GyroTurn extends Command {
 
 		rotatePID.setContinuous(false);
 		rotatePID.setInputRange(0, 360);
-		rotatePID.setOutputRange(-0.5, 0.5);
+		rotatePID.setOutputRange(-0.3, 0.3);
 
 		rotatePID.setAbsoluteTolerance(1);
 		rotatePID.setSetpoint(angle);

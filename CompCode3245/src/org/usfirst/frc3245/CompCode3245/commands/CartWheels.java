@@ -19,7 +19,7 @@ public class CartWheels extends Command {
     // Called just before this Command runs the first time
     protected void initialize(double wheelSpeed) {
 		setTimeout(0.9);
-		Robot.cart.rotateArm(wheelSpeed);
+		Robot.cart.spinWheels(wheelSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run

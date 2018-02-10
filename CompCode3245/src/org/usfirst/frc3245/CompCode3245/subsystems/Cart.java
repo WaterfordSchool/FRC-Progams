@@ -5,6 +5,7 @@ import org.usfirst.frc3245.CompCode3245.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -28,13 +29,17 @@ public class Cart extends Subsystem {
     
     
     public void rotateArm(double armSpeed) {
-    		LeftCartWheel.set(speed);
-    		RightCartWheel.set(speed);
+    		LeftCartWheel.set(armSpeed);
+    		RightCartWheel.set(-armSpeed);
+        	SmartDashboard.putNumber("Left Cart Wheel Speed", LeftCartWheel.get());
+
     }
     
     public void spinWheels(double wheelSpeed) {
     		CartLeftArm.set(wheelSpeed);
-    		CartRightArm.set(wheelSpeed);
+    		CartRightArm.set(-wheelSpeed);
+        	SmartDashboard.putNumber("Left Cart Arm Speed", CartLeftArm.get());
+
     }
     
     public void stop() {
