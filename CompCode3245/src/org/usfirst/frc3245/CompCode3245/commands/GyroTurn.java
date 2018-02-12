@@ -24,7 +24,7 @@ public class GyroTurn extends Command {
 
 	private PIDController rotatePID;
 
-	private final double ROTATE_kP = 0.36, ROTATE_kI = 0, ROTATE_kD = 0;
+	private final double ROTATE_kP = 0.2, ROTATE_kI = 0, ROTATE_kD = 0;
 
 	public GyroTurn(double angle) {
 		rotatePID = new PIDController(ROTATE_kP, ROTATE_kI, ROTATE_kD, new PIDSource() {
@@ -52,7 +52,7 @@ public class GyroTurn extends Command {
 
 		rotatePID.setContinuous(false);
 		rotatePID.setInputRange(0, 360);
-		rotatePID.setOutputRange(-0.3, 0.3);
+		rotatePID.setOutputRange(-1, 1);
 
 		rotatePID.setAbsoluteTolerance(1);
 		rotatePID.setSetpoint(angle);
