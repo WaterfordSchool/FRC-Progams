@@ -71,8 +71,8 @@ public class Robot extends TimedRobot {
 
         autoChooser = new SendableChooser();
         autoChooser.addDefault("Autonomous Default (Drives Straight)", new DriveStr8()); //need to pass this a time
-        autoChooser.addObject("Left Position", new AutonomousCommand(90.0));
-        autoChooser.addObject("Right Position", new AutonomousCommand(-90.0));
+        autoChooser.addObject("Left Position", new AutonomousCommand(90));
+        autoChooser.addObject("Right Position", new AutonomousCommand(-90));
         //autoChooser.addObject("Middle Position", new AutonomousCommand());
         SmartDashboard.putData("Auto mode", autoChooser);
         

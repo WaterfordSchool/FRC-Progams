@@ -2,12 +2,9 @@ package org.usfirst.frc3245.CompCode3245.commands;
 
 import org.usfirst.frc3245.CompCode3245.Robot;
 import org.usfirst.frc3245.CompCode3245.RobotMap;
-
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -20,76 +17,83 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 
  */
 
-public class GyroTurn extends Command {
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-	private PIDController rotatePID;
 
-	private final double ROTATE_kP = 0.2, ROTATE_kI = 0, ROTATE_kD = 0;
 
-	public GyroTurn(double angle) {
-		rotatePID = new PIDController(ROTATE_kP, ROTATE_kI, ROTATE_kD, new PIDSource() {
-			PIDSourceType m_sourceType = PIDSourceType.kDisplacement;
+public class GyroTurn extends PIDCommand {
 
-			public double pidGet() {
-				return RobotMap.driveTrainGyro1.getAngle();
-			}
+	double angle;
+	private int count = 0;
+	double currentOutput = 0;
 
-			@Override
-			public void setPIDSourceType(PIDSourceType pidSource) {
-				m_sourceType = pidSource;
-			}
+	double MINIMUM_OUTPUT = -0.55;
+	double MAXIMUM_OUTPUT = 0.55; 
 
-			@Override
-			public PIDSourceType getPIDSourceType() {
-				return m_sourceType;
-			}
+	
 
-		}, new PIDOutput() {
-			public void pidWrite(double angle) {
-				RobotMap.driveTrainTDrive.arcadeDrive(0, angle);
-			}
-		});
+	public GyroTurn(double setpoint, double p, double i, double d) {
 
-		rotatePID.setContinuous(false);
-		rotatePID.setInputRange(0, 360);
-		rotatePID.setOutputRange(-1, 1);
+		super(p, i, d);
+		setSetpoint(setpoint);
+		getPIDController().setAbsoluteTolerance(1.5);
+		angle = setpoint;
 
-		rotatePID.setAbsoluteTolerance(1);
-		rotatePID.setSetpoint(angle);
+		//Robot.TANK_DRIVE_SUBSYSTEM.gyro.reset();
+		//Robot.autoOn = true;
+		getPIDController().setOutputRange(MINIMUM_OUTPUT, MAXIMUM_OUTPUT);
+		//LiveWindow.addActuator(moduleType, channel, component);
+
 	}
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		if (RobotMap.driveTrainGyro1.getAngle() != 0) {
-			RobotMap.driveTrainGyro1.reset();
+	@Override
+	protected double returnPIDInput() {
+		if (count % 3 == 0) {  
+			//System.out.println("Current Angle: " + Robot.TANK_DRIVE_SUBSYSTEM.gyro.getAngle());
+			SmartDashboard.putNumber("Angle", Robot.driveTrain.gyro1.getAngle()); 
 		}
-		rotatePID.reset();
-		rotatePID.enable();
+		count++;
+		//Robot.autoOn = true;
+
+		return Robot.driveTrain.gyro1.getAngle();
+
 	}
 
 
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		SmartDashboard.putData("Angle Tune", rotatePID);
+	@Override
+
+	protected void usePIDOutput(double output) {
+		Robot.driveTrain.drive(-output, output); 
+		currentOutput = output;
 	}
 
 
 
-	// Make this return true when this Command no longer needs to run execute()
+	@Override
+
 	protected boolean isFinished() {
-		return false;
+		if  (getPIDController().onTarget()) {
+			System.out.println("Finished");
+			Robot.driveTrain.drive(0, 0);
+			//Robot.TANK_DRIVE_SUBSYSTEM.gyro.reset();
+			getPIDController().disable();
+			//Robot.autoOn = false;
+			return true;
+		}
+
+		else {
+//			System.out.println("Current motor output: " + currentOutput);
+//			System.out.println("is not finished");
+			return false;
+
+		}
+
 	}
 
-	// Called once after isFinished returns true
-	protected void end() {
-		rotatePID.disable();
-		RobotMap.driveTrainTDrive.arcadeDrive(0, 0);
-	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+
 }

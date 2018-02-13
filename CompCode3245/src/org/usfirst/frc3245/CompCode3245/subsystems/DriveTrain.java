@@ -49,7 +49,7 @@ public class DriveTrain extends Subsystem {
     private final WPI_TalonSRX rightRearMotor = RobotMap.driveTrainRightRearMotor;
     private final DifferentialDrive tDrive = RobotMap.driveTrainTDrive;
     private final Encoder leftEncoder = RobotMap.driveTrainLeftEncoder;
-    private final ADXRS450_Gyro gyro1 = RobotMap.driveTrainGyro1;
+    public final ADXRS450_Gyro gyro1 = RobotMap.driveTrainGyro1;
     private final Encoder rightEncoder = RobotMap.driveTrainRightEncoder;
     
     double LEncoderPos = 0, REncoderPos = 0, desiredDistance = 5;
