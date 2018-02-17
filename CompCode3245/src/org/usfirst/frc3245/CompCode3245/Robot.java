@@ -111,8 +111,23 @@ public class Robot extends TimedRobot {
         	if(gameData.charAt(0) == 'L' && startingPosition == "Left") {
         		autonomousCommand = new AutonomousCommand(90.0);
         	} 
+        	else if(gameData.charAt(0) == 'R' && startingPosition == "Right") {
+        		autonomousCommand = new AutonomousCommand(-90.0);
+        	}
+        	else if(gameData.charAt(1) == 'L' && startingPosition == "Left") {
+        		autonomousCommand = new ScaleAutoCommand(90.0);
+        	} 
+        	else if(gameData.charAt(1) == 'R' && startingPosition == "Right") {
+        		autonomousCommand = new ScaleAutoCommand(-90.0);
+        	}
+        	else if(gameData.charAt(1) == 'L' && startingPosition == "Right") {
+        		autonomousCommand = new OppositeScale(-90.0);
+        	}
+        	else if(gameData.charAt(1) == 'R' && startingPosition == "Left") {
+        		autonomousCommand = new OppositeScale(90.0);
+        	}
         	else {
-			//Put right auto code here
+			// DriveStr8();
         	}
         }
     	

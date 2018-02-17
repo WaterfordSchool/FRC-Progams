@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ScaleAutoCommand extends CommandGroup {
     public ScaleAutoCommand(double primaryTurn) {
     	addSequential(new DriveStr8(), 4.3);
-    	addSequential(new GyroTurn(primaryTurn, .35, 0, 0), 3);
+    	addSequential(new GyroTurn(primaryTurn, .045, 0, 0), 3);
     	addSequential(new DriveBackwards(), .3);
     	addSequential(new ElevatorUp(), 4);
     //	addSequential(new DriveStr8(), .2);
