@@ -46,18 +46,15 @@ public class Elevator extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void activate(double right, double blank) {
-    	RobotMap.elevatorEDrive.arcadeDrive(right, blank);
-    }
     public void activate(Joystick joy) {
-    	activate(joy.getAxis(AxisType.kThrottle), 0);
+    	ElevatorMotor.set(0.9*joy.getY());
     }
     
     public void up() {
-    	ElevatorMotor.set(.7);
+    	ElevatorMotor.set(1.0);
     }
     public void down() {
-    	ElevatorMotor.set(-.7);
+    	ElevatorMotor.set(-1.0);
     }
     public void stop() {
     	ElevatorMotor.set(0);
