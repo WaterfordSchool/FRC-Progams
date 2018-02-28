@@ -8,12 +8,14 @@
 package org.usfirst.frc.team3166.robot;
 
 import com.ctre.phoenix.*;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,71 +31,55 @@ public class Robot extends IterativeRobot {
     public static WPI_TalonSRX LeftMotor = new WPI_TalonSRX(45);
     public static WPI_TalonSRX RightMotor = new WPI_TalonSRX(32);
     public static DifferentialDrive TDrive = new DifferentialDrive(LeftMotor, RightMotor);
-    public static Encoder LeftEncoder, RightEncoder;
+  //  public static Encoder LeftEncoder, RightEncoder;
     public static ADXRS450_Gyro driveTrainGyro1;
 
-	
-	private static final String kDefaultAuto = "Default";
-	private static final String kCustomAuto = "My Auto";
-	private String m_autoSelected;
-	private SendableChooser<String> m_chooser = new SendableChooser<>();
+   public double motorSpeed;
+    public int averagePos;
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
 	@Override
 	public void robotInit() {
-		m_chooser.addDefault("Default Auto", kDefaultAuto);
-		m_chooser.addObject("My Auto", kCustomAuto);
-		SmartDashboard.putData("Auto choices", m_chooser);
+		LeftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 4);
+    	LeftMotor.setSensorPhase(false);
+    	RightMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 4);
+    	RightMotor.setSensorPhase(false);
 	}
-
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString line to get the auto name from the text box below the Gyro
-	 *
-	 * <p>You can add additional auto modes by adding additional comparisons to
-	 * the switch structure below with additional strings. If using the
-	 * SendableChooser make sure to add them to the chooser code above as well.
-	 */
+	
+	
 	@Override
 	public void autonomousInit() {
-		m_autoSelected = m_chooser.getSelected();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
-		// defaultAuto);
-		System.out.println("Auto selected: " + m_autoSelected);
+		
+		resetEncoders();
+		motorSpeed = 0.4;
+		averagePos = 0;
+		while (averagePos < 2000) {
+			TDrive.tankDrive(motorSpeed, motorSpeed);
+			averagePos = (RightMotor.getSelectedSensorPosition(0)+LeftMotor.getSelectedSensorPosition(0)/2);
+			SmartDashboard.putNumber("Average Encoder Position", averagePos);
+			SmartDashboard.putNumber("Right Encoder Position", RightMotor.getSelectedSensorPosition(0));
+			SmartDashboard.putNumber("Left Encoder Position", LeftMotor.getSelectedSensorPosition(0));
+			SmartDashboard.putNumber("Left Motor Speed", LeftMotor.get());
+			SmartDashboard.putNumber("Right Motor Speed", RightMotor.get());
+		}
+		
+		LeftMotor.set(0);
+		RightMotor.set(0);
 	}
 
-	/**
-	 * This function is called periodically during autonomous.
-	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (m_autoSelected) {
-			case kCustomAuto:
-				// Put custom auto code here
-				break;
-			case kDefaultAuto:
-			default:
-				// Put default auto code here
-				break;
-		}
+		
 	}
 
-	/**
-	 * This function is called periodically during operator control.
-	 */
+	public void resetEncoders() {
+		LeftMotor.setSelectedSensorPosition(0, 0, 4);
+		RightMotor.setSelectedSensorPosition(0, 0, 4);
+	}
+	
 	@Override
 	public void teleopPeriodic() {
 	}
 
-	/**
-	 * This function is called periodically during test mode.
-	 */
 	@Override
 	public void testPeriodic() {
 	}
