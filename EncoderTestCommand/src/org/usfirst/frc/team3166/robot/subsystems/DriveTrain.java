@@ -50,6 +50,7 @@ public class DriveTrain extends Subsystem {
     public void resetEncoders() {
 		LeftMotor.setSelectedSensorPosition(0, 0, 0);
 		RightMotor.setSelectedSensorPosition(0, 0, 0);
+		averagePos = 0;
     }
     
     public void reportEncoders() {
@@ -60,7 +61,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Average Encoder Position", averagePos);
     }
     
-    public int getDistance() {
+    public double getDistance() {
 		averagePos = (RightMotor.getSelectedSensorPosition(0)+LeftMotor.getSelectedSensorPosition(0))/2;
 		return averagePos;
     }

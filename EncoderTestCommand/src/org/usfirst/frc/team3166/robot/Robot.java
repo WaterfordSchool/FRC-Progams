@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
 		kDriveTrain = new DriveTrain();
 		m_chooser.addDefault("Default Auto", new DriveStraight(2000, 0.5));
 		m_chooser.addObject("Auto for Right Position", new AutoRight());
+		m_chooser.addObject("Auto for Left Position", new AutoLeft());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		kDriveTrain.initDriveTrain();
 		kDriveTrain.resetEncoders();

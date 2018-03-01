@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoRight extends CommandGroup {
+public class AutoLeft extends CommandGroup {
 
-    public AutoRight() {
+    public AutoLeft() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -26,12 +26,10 @@ public class AutoRight extends CommandGroup {
         // arm.
     	
     	addSequential(new ResetEncoders());
-    	addSequential(new DriveStraight(5000, 0.5));
+    	addSequential(new DriveStraightPID(5000, 1, 0, 0));
     	addSequential(new ResetEncoders());
     	addSequential(new Turn(), 2);
     	addSequential(new ResetEncoders());
-    	addSequential(new DriveStraight(2000, 0.5));
-    	addSequential(new ResetEncoders());
-    	
+    	addSequential(new DriveStraightPID(2000, 1, 0, 0));
     }
 }

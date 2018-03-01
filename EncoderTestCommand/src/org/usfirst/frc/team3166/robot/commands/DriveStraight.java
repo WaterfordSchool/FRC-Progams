@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveStraight extends Command {
 	private double m_motorSpeed;
-	private int encoderPos;
+	private double encoderPos;
 	public int m_distance;
 	
     public DriveStraight(int distance, double motorSpeed) {
