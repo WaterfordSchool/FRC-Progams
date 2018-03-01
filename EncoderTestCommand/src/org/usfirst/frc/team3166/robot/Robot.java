@@ -65,11 +65,6 @@ public class Robot extends TimedRobot {
 		Robot.kDriveTrain.resetEncoders();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
-			SmartDashboard.putNumber("Average Encoder Position", kDriveTrain.averagePos);
-			SmartDashboard.putNumber("Right Encoder Position", DriveTrain.RightMotor.getSelectedSensorPosition(0));
-			SmartDashboard.putNumber("Left Encoder Position", DriveTrain.LeftMotor.getSelectedSensorPosition(0));
-			SmartDashboard.putNumber("Left Motor Speed", DriveTrain.LeftMotor.get());
-			SmartDashboard.putNumber("Right Motor Speed", DriveTrain.RightMotor.get());
 		}
 	}
 

@@ -25,8 +25,12 @@ public class AutoRight extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
+    	addSequential(new ResetEncoders());
     	addSequential(new DriveStraight(5000, 0.5));
-    	addSequential(new DriveStraight(2000,0.5));
+    	addSequential(new Turn(), 2);
+    	addSequential(new ResetEncoders());
+    	addSequential(new TimerDelay(2));
+    	addSequential(new DriveStraight(2000, 0.5));
     	
     }
 }

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3166.robot.subsystems;
 
+import org.usfirst.frc.team3166.robot.Robot;
 import org.usfirst.frc.team3166.robot.commands.*;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -47,15 +48,20 @@ public class DriveTrain extends Subsystem {
     }
     
     public void resetEncoders() {
-		LeftMotor.setSelectedSensorPosition(0, 0, 4);
-		RightMotor.setSelectedSensorPosition(0, 0, 4);
+		LeftMotor.setSelectedSensorPosition(0, 0, 0);
+		RightMotor.setSelectedSensorPosition(0, 0, 0);
+    }
+    
+    public void reportEncoders() {
+		SmartDashboard.putNumber("Right Encoder Position", DriveTrain.RightMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Encoder Position", DriveTrain.LeftMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Motor Speed", DriveTrain.LeftMotor.get());
+		SmartDashboard.putNumber("Right Motor Speed", DriveTrain.RightMotor.get());
+		SmartDashboard.putNumber("Average Encoder Position", averagePos);
     }
     
     public int getDistance() {
-		averagePos = (RightMotor.getSelectedSensorPosition(0)+LeftMotor.getSelectedSensorPosition(0)/2);
-		SmartDashboard.putNumber("Average Encoder Position", averagePos);
-		SmartDashboard.putNumber("Right Encoder Position", RightMotor.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Left Encoder Position", LeftMotor.getSelectedSensorPosition(0));
+		averagePos = (RightMotor.getSelectedSensorPosition(0)+LeftMotor.getSelectedSensorPosition(0))/2;
 		return averagePos;
     }
     
