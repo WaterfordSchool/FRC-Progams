@@ -26,7 +26,7 @@ public class CartArmsRotateOut extends Command {
     protected void execute() {
 		setTimeout(0.9);
 		//Robot.cart.rotateArm(armSpeed);
-		Robot.cartArms.rotateArm(0.2);
+		Robot.cartArms.rotateArm(0.15);
 		SmartDashboard.putNumber("Left Cart Wheel Speed", RobotMap.LeftCartWheel.get());
     }
 

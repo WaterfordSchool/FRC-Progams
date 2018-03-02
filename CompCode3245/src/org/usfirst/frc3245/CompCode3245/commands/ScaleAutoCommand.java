@@ -17,11 +17,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ScaleAutoCommand extends CommandGroup {
     public ScaleAutoCommand(double primaryTurn) {
+    	addParallel(new CAClampIn());
     	addSequential(new DriveStr8(), 4.3);
-    	addSequential(new GyroTurn(primaryTurn, .35, 0, 0), 3);
+    	addParallel(new CAClampIn());
+    	addSequential(new GyroTurn(primaryTurn, .35, 0, 0), 1);
+    	addParallel(new CAClampIn());
     	addSequential(new DriveBackwards(), .3);
+    	addParallel(new CAClampIn());
     	addSequential(new ElevatorUp(), 4);
-    //	addSequential(new DriveStr8(), .2);
     	addSequential(new CubeScoringCommand());
     }
 }

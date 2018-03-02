@@ -19,6 +19,7 @@ public class CubeScoringCommand extends CommandGroup {
     public CubeScoringCommand() {
     	addSequential(new CartArmsRotateOut(), 0.15);
     	addParallel(new CartWheelsSpinOut(), 0.3);
-    	addParallel(new CartArmsRotateIn(), 0.3);
+    	addParallel(new CartArmsRotateOut(), 0.3);
+    	
     }
 }
