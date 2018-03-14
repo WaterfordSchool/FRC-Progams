@@ -30,7 +30,7 @@ public class OI {
     public JoystickButton opBlueButton, opRedButton;
     public Joystick opLeftJoystick, opRightJoystick;
     public JoystickButton DpadUp, DpadDown, DpadLeft, DpadRight;
-    public JoystickButton drRightTrigger, drLeftTrigger, drYellowButton, drRightBumper;
+    public JoystickButton drRightTrigger, drLeftTrigger, drYellowButton, drRightBumper, drLeftBumper;
     public JoystickButton opRightTrigger, opLeftTrigger, opRightBumper, opLeftBumper;
 
 
@@ -81,8 +81,8 @@ public class OI {
         	opRedButton.whileHeld(new CartArmsRotateIn());
         	
         	//FastButton
-        	drRightBumper = new JoystickButton (driver, 6);
-        	drRightBumper.whileHeld(new TankDrive(1.0));
+        	drLeftBumper = new JoystickButton (driver, 5);
+        	drLeftBumper.whileHeld(new TankDrive(1.0));
 
         // SmartDashboard Buttons
         //SmartDashboard.putData("Autonomous Command", new AutonomousCommand()); Do we need this?

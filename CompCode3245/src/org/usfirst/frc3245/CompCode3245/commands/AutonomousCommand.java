@@ -20,7 +20,7 @@ public class AutonomousCommand extends CommandGroup {
     	addParallel(new CAClampIn());
     	addSequential(new DriveStr8(), 2.3);
     	addParallel(new CAClampIn());
-    	addSequential(new GyroTurn(primaryTurn, 0.045, 0, 0), 1);
+    	addSequential(new GyroTurn(primaryTurn, 0.045, 0, 0), 1.5);
     	addParallel(new CAClampIn());
     	addSequential(new DriveStr8(), .3);
     	addParallel(new CAClampIn());

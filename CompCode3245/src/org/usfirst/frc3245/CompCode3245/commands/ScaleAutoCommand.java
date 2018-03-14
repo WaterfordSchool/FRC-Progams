@@ -20,11 +20,12 @@ public class ScaleAutoCommand extends CommandGroup {
     	addParallel(new CAClampIn());
     	addSequential(new DriveStr8(), 4.3);
     	addParallel(new CAClampIn());
-    	addSequential(new GyroTurn(primaryTurn, .35, 0, 0), 1);
+    	addSequential(new GyroTurn(primaryTurn, .35, 0, 0), 1.8);
     	addParallel(new CAClampIn());
-    	addSequential(new DriveBackwards(), .3);
+    	addSequential(new DriveBackwards(), .1);
     	addParallel(new CAClampIn());
     	addSequential(new ElevatorUp(), 4);
+    	addSequential(new DriveStr8(), .15);
     	addSequential(new CubeScoringCommand());
     }
 }

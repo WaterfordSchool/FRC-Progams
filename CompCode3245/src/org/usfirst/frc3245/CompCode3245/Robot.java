@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
         autoChooser.addDefault("Autonomous Default (Drives Straight)", "Drive Straight"); //need to pass this a time
         autoChooser.addObject("Left Position", "Left");
         autoChooser.addObject("Right Position","Right");
-        autoChooser.addObject("Left Scale Position", "Middle");
+        autoChooser.addObject("In The Middle", "Middle");
         //autoChooser.addObject("Middle Position", new AutonomousCommand());
         SmartDashboard.putData("Auto mode", autoChooser);
         
@@ -113,29 +113,25 @@ public class Robot extends TimedRobot {
         	
         	if(gameData.charAt(0) == 'L'&& startingPosition == "Left") {
         		autonomousCommand = new AutonomousCommand(-90.0);		
-        	} 
-        	else if(gameData.charAt(0)== 'R'&& startingPosition == "Right"){
+        	}else if(gameData.charAt(0)== 'R'&& startingPosition == "Right"){
         		autonomousCommand = new AutonomousCommand(90.0);
-        	}
-        	else if(gameData.charAt(1)== 'L' && startingPosition == "Left") {
+        	}else if(gameData.charAt(1)== 'L' && startingPosition == "Left") {
         		autonomousCommand = new ScaleAutoCommand(-90.0);
-        	}
-        	else if(gameData.charAt(1) == 'R' && startingPosition == "Right") {
+        	}else if(gameData.charAt(1) == 'R' && startingPosition == "Right") {
         		autonomousCommand = new ScaleAutoCommand(90.0);
-        	}
-        	else if(gameData.charAt(1)== 'L' && startingPosition == "Right") {
+        	}else if(gameData.charAt(1)== 'L' && startingPosition == "Right") {
         		autonomousCommand = new OppositeScale(90.0);
-        	}
-        	else if(gameData.charAt(1) == 'R' && startingPosition == "Left") {
+        	}else if(gameData.charAt(1) == 'R' && startingPosition == "Left") {
         		autonomousCommand = new OppositeScale(- 90.0);
-        	}
-        	else if(startingPosition == "Drive Straight") {
+        	}else if(gameData.charAt(0)== 'R' && startingPosition == "Middle") {
+        		autonomousCommand = new AutoMiddlePosition(90.0);   		
+        	}else if(gameData.charAt(0)== 'L' && startingPosition == "Middle") {
+        		autonomousCommand = new AutoMiddleFront(-90.0);
+        	}else if(startingPosition == "Drive Straight") {
+        		autonomousCommand = new DriveStr8();
+        	}else {
         		autonomousCommand = new DriveStr8();
         	}
-        	else {
-        		autonomousCommand = new DriveStr8();
-        	}
-        	
         }
 
         // schedule the autonomous command (example)

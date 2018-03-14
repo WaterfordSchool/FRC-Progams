@@ -9,17 +9,19 @@ public class OppositeScale extends CommandGroup {
 
     public OppositeScale(double primaryTurn) {
     	addParallel(new CAClampIn());
-    	addSequential(new DriveStr8(), 3.5);
+    	addSequential(new DriveStr8(), 3.15);
     	addParallel(new CAClampIn());
-    	addSequential(new GyroTurn(primaryTurn, .045, 0, 0), 3);
+    	addSequential(new GyroTurn(primaryTurn, .045, 0, 0), 1.8);
     	addParallel(new CAClampIn());
-    	addSequential(new DriveStr8(), 2.3);
+    	addSequential(new DriveStr8(), 3);
     	addParallel(new CAClampIn());
-    	addSequential(new GyroTurn(-primaryTurn, .045, 0, 0), 3);
-    	addParallel(new CAClampIn());
-    	addSequential(new DriveStr8(), 0.02);
+    	addSequential(new GyroTurn(-primaryTurn, .045, 0, 0), 1.3);
+    	//addParallel(new CAClampIn());
+    	//addSequential(new DriveStr8(), 0.04);
     	addParallel(new CAClampIn());
     	addSequential(new ElevatorUp(), 4);
-    	addSequential(new CubeScoringCommand());
+    	addParallel(new CAClampIn());
+    	addSequential(new DriveStr8(), 0.2);
+    	//addSequential(new CubeScoringCommand());
     }
 }

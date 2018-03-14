@@ -75,7 +75,7 @@ public class DriveBackwards extends Command {
 		//turningValue = Math.copySign(turningValue, Robot.oi.getDriver().getY());
 		SmartDashboard.putNumber("turning value is ", turningValue);
 		//RobotMap.driveTrainTDrive.tankDrive(0.3+turningValue, 0.3-turningValue,false);
-		RobotMap.driveTrainTDrive.tankDrive(0.7, 0.7);
+		RobotMap.driveTrainTDrive.tankDrive(-0.7, -0.7);
 		
 		
     }
